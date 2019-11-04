@@ -63,9 +63,6 @@ fs.readFile('tiobe.txt', 'utf-8', (error, data) => {
 	var colors = ['IndianRed', 'SandyBrown', 'MediumVioletRed', 'Gold', 'LightSeaGreen',
 	          'DeepSkyBlue', 'SlateBlue', 'LightPink', 'BurlyWood', 'MediumSeaGreen']
 	key_dates.sort()
-	console.log(my_data);
-	console.log(language);
-	console.log(key_dates);
 	var count = [];
 	var obj2arr = Object.entries(my_data);
 	obj2arr.forEach((language) => {
@@ -86,7 +83,6 @@ fs.readFile('tiobe.txt', 'utf-8', (error, data) => {
 	var bardata = math.transpose(count);
 	var finalObj = [];
 	var colorObj = [];
-	console.log(colors);
 	bardata.forEach(arr => {
 		let obj = new Map();
 		let obj2 = new Map();
@@ -97,17 +93,13 @@ fs.readFile('tiobe.txt', 'utf-8', (error, data) => {
 		finalObj.push(obj)
 		colorObj.push(obj2)
 	})
-	console.log(finalObj);
-	console.log(colorObj);
 	var mapSort = []; 
 	var colorSort = [];
 	finalObj.forEach(mmp => mapSort.push(new Map([...mmp.entries()].sort((a, b) => a[1] - b[1]))))
 	colorObj.forEach(mmp => colorSort.push(new Map([...mmp.entries()].sort((a, b) => a[1] - b[1]))))
-	console.log(mapSort);
-	console.log(colorSort);
+
 	var colorSortData = [];
 	colorSort.forEach(mmp => colorSortData.push([...mmp.keys()]))
-	console.log(colorSortData);
 	
 	var data = [{
 		x:[...mapSort[0].values()],
@@ -179,9 +171,7 @@ fs.readFile('tiobe.txt', 'utf-8', (error, data) => {
 			automargin:true
 		}
 	}
-	console.log(data);
-	console.log(layout);
-	console.log(frames);
+
 	Plotly.newPlot('graph', {data:data, layout:layout, frames: frames,})
 
 
